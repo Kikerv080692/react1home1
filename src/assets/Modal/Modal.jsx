@@ -7,8 +7,15 @@ import ModalBody from "./ModalBody/ModalBody";
 import './modal.scss'
 
 export default function Modal(props) {
+        const handleClose = (e) => {
+            if(e.target === e.currentTarget){
+                props.handlerClose()
+            }
+        }
+
     return (
-        <div className="modalWrapper">
+        <>
+            {props.isModal && <div className="modalWrapper" onClick={handleClose}>
             <ModalWrapper >
                 <ModalClose handlerClose={props.handlerClose}/>
                 <ModalHeader>
@@ -17,9 +24,11 @@ export default function Modal(props) {
                 <ModalBody>
                     {props.body}
                 </ModalBody>
-                <ModalFooter listClass={props.listClass}  listClass2={props.listClass2} firstClick={props.handlerClose} secondaryClick={props.handlerClose} 
-                            firstText={props.firstText} secondaryText={props.secondaryText} />
+                <ModalFooter> 
+                    {props.footer}
+                </ModalFooter>
             </ModalWrapper>
-        </div>
+            </div>}
+        </>
     )
 }

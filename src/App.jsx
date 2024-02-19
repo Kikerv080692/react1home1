@@ -3,58 +3,62 @@ import "./App.css";
 import Button from "./assets/Button/Button";
 import Modal from "./assets/Modal/Modal";
 
+const footer1 = (
+  <>
+    <Button className="btn-footer1">"NO, CANCEL"</Button>
+    <Button>"YES,DELETE"</Button>
+  </>
+);
+
+
+const footer2 = (
+  <>
+    <Button className="btn-footer2">"ADD TO FAVORITE"</Button>
+  </>
+);
+const header1 = (
+  <>
+    <img src="../src/image/iMac_Typing_on_Keyboard.webp" alt="" />
+    <p>Product Delete!</p>
+  </>
+)
+
+
+
+const modals = [
+  {
+    header: header1,
+    body: "By clicking the “Yes, Delete” button, PRODUCT NAME will be deleted.",
+    footer: footer1,
+  },
+  {
+    header: "Add Product “NAME”",
+    body: "Description for you product",
+    footer: footer2,
+  },
+];
+
 function App() {
   const [isModal, setIsModal] = useState(false);
-  const [textHeader, setTextHeader] = useState("");
-  const [textBody, setTextBody] = useState("");
-  const [listClass, setListClass ] = useState("")
-  const [listClass2, setListClass2 ] = useState("")
-  const [firstTextBtnFooter, setFirstTextBtnFooter] = useState("");
-  const [secondaryTextBtnFooter, setSecondaryTextBtnFooter] = useState("");
+  const [modalContent, setModalContent] = useState({})
 
   const handlerClickFirst = () => {
-    setTextHeader("Product Delete!");
-    setTextBody(
-      "By clicking the “Yes, Delete” button, PRODUCT NAME will be deleted."
-    );
-    setFirstTextBtnFooter("NO, CANCEL");
-    setSecondaryTextBtnFooter("YES,DELETE");
-    setListClass('btn-footer')
+    setModalContent(() => {
+      return {...modals[0]}
+    })
     setIsModal(true);
   };
-  
+
   const handlerClickSecond = () => {
-    setTextHeader("Add Product “NAME”");
-    setTextBody("Description for you product");
-    setFirstTextBtnFooter("ADD TO FAVORITE");
-    setSecondaryTextBtnFooter("");
-    setListClass2('btn-footer2')
+    setModalContent(() => {
+      return {...modals[1]}
+    })
     setIsModal(true);
   };
 
   const handlerClose = () => {
     setIsModal(false);
   };
-
-  let menuRef = useRef(Modal);
-  console.log(menuRef)
-
-  useEffect(() => {
-    let handler = (e) => {
-      const target = e.target
-      console.log(target)
-      if (!menuRef.current.contains(target)) {
-        console.log(menuRef.current.contains(target));
-        setIsModal(false);
-      }
-    };
-    document.addEventListener("click", handler);
-    return () => {
-      document.removeEventListener("click", handler);
-    };
-  }, []);
-
-  // function useOutsideClick() {}
 
   return (
     <>
@@ -64,18 +68,11 @@ function App() {
       <Button className="exit-btn" handlerClick={handlerClickSecond}>
         Open second modal
       </Button>
-      {isModal  && (
+      {isModal && (
         <Modal
-          ref={menuRef}
           handlerClose={handlerClose}
-          header={textHeader}
-          body={textBody}
-          firstClick={handlerClose}
-          secondaryClick={handlerClose}
-          firstText={firstTextBtnFooter}
-          secondaryText={secondaryTextBtnFooter}
-          listClass={listClass}
-          listClass2={listClass2}
+          isModal={isModal}
+          {...modalContent}
         />
       )}
     </>
@@ -83,3 +80,5 @@ function App() {
 }
 
 export default App;
+
+
