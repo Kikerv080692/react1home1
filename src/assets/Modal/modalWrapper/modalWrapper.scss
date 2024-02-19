@@ -1,10 +1,16 @@
-.container_wrapper{
+.container-wrapper{
     border: 1px solid black;
     border-radius: 5px;
     width: 570px;
     height: 572px;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
-    
+    background-color: white;
+    position: absolute;
+    margin-left: 20px;
+    margin-top: 100px;
+    gap: 15px;
+   
 }

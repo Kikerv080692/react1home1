@@ -1,8 +1,8 @@
-.btnClose{
-    padding-top: 20px;
-    display: block;
-    align-items:end;
-    margin-left: 500px;
+.btn-close{
+    // padding-top: -30px;
+    display: flex;
+    justify-content: right;
+    // margin-left: 500px;
    
     button{
         width: 15px;

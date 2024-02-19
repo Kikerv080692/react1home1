@@ -1,8 +1,24 @@
-   button {
-       margin-bottom: 10px;
-       border-radius: 5px;
-       border: 1px solid black;
-       width: 230px;
-       height: 48px;
-      
-   }
+.container-btn {
+    padding-top: 100px;
+
+    .btn-footer {
+        margin-right: 30px;
+        background: #8a33fd;
+        padding-top: 10px;
+        color: white;
+
+        button {
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid black;
+            width: 200px;
+            height: 48px;
+        }
+    }
+}
+
+.btn-footer2{
+    background: #8a33fd;
+    padding-top: 10px;
+    color: white;
+}
